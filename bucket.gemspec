@@ -2,12 +2,12 @@
 require File.expand_path('../lib/hub/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name              = "hub"
+  s.name              = "bucket"
   s.version           = Hub::VERSION
   s.summary           = "Command-line wrapper for git and GitHub"
-  s.homepage          = "http://defunkt.io/hub/"
-  s.email             = "mislav.marohnic@gmail.com"
-  s.authors           = [ "Chris Wanstrath", "Mislav Marohnić" ]
+  s.homepage          = "http://github.com/kunday/hub/"
+  s.email             = "hi@kunday.com"
+  s.authors           = [ "Arvind Kunday", "Chris Wanstrath", "Mislav Marohnić" ]
   s.license           = "MIT"
 
   s.add_development_dependency 'rake'
