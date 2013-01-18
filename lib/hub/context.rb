@@ -208,11 +208,11 @@ module Hub
       end
     end
 
-    class GithubProject < Struct.new(:local_repo, :owner, :name, :host)
+    class BitbucketProject < Struct.new(:local_repo, :owner, :name, :host)
       def self.from_url(url, local_repo)
         if local_repo.known_hosts.include? url.host
           _, owner, name = url.path.split('/', 4)
-          GithubProject.new(local_repo, owner, name.sub(/\.git$/, ''), url.host)
+          BitbucketProject.new(local_repo, owner, name.sub(/\.git$/, ''), url.host)
         end
       end
 
@@ -278,7 +278,7 @@ module Hub
 
       def self.resolve(url, local_repo)
         u = URI(url)
-        if %[http https].include? u.scheme and project = GithubProject.from_url(u, local_repo)
+        if %[http https].include? u.scheme and project = BitbucketProject.from_url(u, local_repo)
           self.new(u.scheme, u.userinfo, u.host, u.port, u.registry,
                    u.path, u.opaque, u.query, u.fragment, project)
         end
@@ -333,7 +333,7 @@ module Hub
 
       def project
         urls.each_value { |url|
-          if valid = GithubProject.from_url(url, local_repo)
+          if valid = BitbucketProject.from_url(url, local_repo)
             return valid
           end
         }
@@ -384,7 +384,7 @@ module Hub
         project.name = name
         project
       else
-        GithubProject.new(local_repo(false), owner, name)
+        BitbucketProject.new(local_repo(false), owner, name)
       end
     end
 
