@@ -50,7 +50,7 @@ class HubTest < Test::Unit::TestCase
     @prompt_stubs = prompt_stubs = []
     @password_prompt_stubs = password_prompt_stubs = []
 
-    Hub::GitHubAPI::Configuration.class_eval do
+    Hub::BitbucketAPI::Configuration.class_eval do
       undef prompt
       undef prompt_password
 

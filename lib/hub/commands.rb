@@ -184,7 +184,7 @@ module Hub
 
       args.executable = 'echo'
       args.replace [pull['html_url']]
-    rescue GitHubAPI::Exceptions
+    rescue BitbucketAPI::Exceptions
       display_api_exception("creating pull request", $!.response)
       exit 1
     end
@@ -485,7 +485,7 @@ module Hub
         args.replace %W"remote add -f #{forked_project.owner} #{url}"
         args.after 'echo', ['new remote:', forked_project.owner]
       end
-    rescue GitHubAPI::Exceptions
+    rescue BitbucketAPI::Exceptions
       display_api_exception("creating fork", $!.response)
       exit 1
     end
@@ -542,7 +542,7 @@ module Hub
 
         args.after 'echo', ["#{action}:", new_project.name_with_owner]
       end
-    rescue GitHubAPI::Exceptions
+    rescue BitbucketAPI::Exceptions
       display_api_exception("creating repository", $!.response)
       exit 1
     end
@@ -736,9 +736,9 @@ module Hub
     def api_client
       @api_client ||= begin
         config_file = ENV['HUB_CONFIG'] || '~/.config/hub'
-        file_store = GitHubAPI::FileStore.new File.expand_path(config_file)
-        file_config = GitHubAPI::Configuration.new file_store
-        GitHubAPI.new file_config, :app_url => 'http://defunkt.io/hub/'
+        file_store = BitbucketAPI::FileStore.new File.expand_path(config_file)
+        file_config = BitbucketAPI::Configuration.new file_store
+        BitbucketAPI.new file_config, :app_url => 'http://defunkt.io/hub/'
       end
     end
 
@@ -1004,7 +1004,7 @@ help
         end
       end
     end
-    
+
     def display_api_exception(action, response)
       $stderr.puts "Error #{action}: #{response.message.strip} (HTTP #{response.status})"
       if 422 == response.status and response.error_message?
