@@ -43,7 +43,7 @@ module Hub
 
     def api_host host
       host = host.downcase
-      'github.com' == host ? 'api.github.com' : host
+      'bitbucket.org' == host ? 'api.bitbucket.org' : host
     end
 
     # Public: Fetch data for a specific repo.
@@ -191,7 +191,7 @@ module Hub
 
       def request_uri url
         str = url.request_uri
-        str = '/api/v3' << str if url.host != 'api.github.com'
+        str = '/api/v3' << str if url.host != 'api.bitbucket.org'
         str
       end
 
@@ -340,7 +340,7 @@ module Hub
 
       def normalize_host host
         host = host.downcase
-        'api.github.com' == host ? 'github.com' : host
+        'api.bitbucket.org' == host ? 'bitbucket.org' : host
       end
 
       def username host

@@ -197,7 +197,7 @@ module Hub
       end
 
       def self.main_host
-        'github.com'
+        'bitbucket.org'
       end
 
       extend Forwardable
@@ -222,7 +222,7 @@ module Hub
         super
         self.name = self.name.tr(' ', '-')
         self.host ||= (local_repo || LocalRepo).default_host
-        self.host = host.sub(/^ssh\./i, '') if 'ssh.github.com' == host.downcase
+        self.host = host.sub(/^ssh\./i, '') if 'ssh.bitbucket.org' == host.downcase
       end
 
       def private?
@@ -441,7 +441,7 @@ module Hub
 
     module System
       # Cross-platform web browser command; respects the value set in $BROWSER.
-      # 
+      #
       # Returns an array, e.g.: ['open']
       def browser_launcher
         browser = ENV['BROWSER'] || (
