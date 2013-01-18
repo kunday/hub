@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.files            += Dir.glob("man/**/*")
   s.files            += Dir.glob("test/**/*")
 
-  s.executables       = %w( hub )
+  s.executables       = %w( bucket )
   s.description       = <<desc
   `hub` is a command line utility which adds GitHub knowledge to `git`.
 
